@@ -3,7 +3,7 @@ import type { FormEvent } from "react";
 import { completeChat, streamChat } from "../lib/api";
 import type { ChatMessage } from "../lib/api";
 import { isLikelyNetworkFailure, streamDemoReply } from "../lib/demo";
-import { loadSettings, saveSettings } from "../lib/storage";
+import { loadSettings, requiresBrowserKey, saveSettings } from "../lib/storage";
 import type { GhostSettings } from "../lib/storage";
 
 type UiMessage = ChatMessage & { id: string; demo?: boolean };
@@ -64,7 +64,8 @@ export function Chat() {
     };
 
     try {
-      if (!settings.apiKey.trim()) {
+      const needKey = requiresBrowserKey(settings.apiBaseUrl);
+      if (needKey && !settings.apiKey.trim()) {
         setDemoBanner(true);
         await streamDemoReply(apiMessages, write, controller.signal);
         setMessages((prev) =>
@@ -235,17 +236,21 @@ export function Chat() {
             onClick={(e) => e.stopPropagation()}
           >
             <h2 id="settings-title">API settings</h2>
-            <p className="muted">Keys stay in this browser. Nothing is uploaded to GhostGPT.live hosting.</p>
+            <p className="muted">
+              Default <code>/api/v1</code> hits the onboard GhostGPT AI gateway. Optional{" "}
+              <code>ghost_</code> keys stay in this browser only.
+            </p>
             <label className="field">
               <span>API base URL</span>
               <input
                 value={settings.apiBaseUrl}
                 onChange={(e) => updateSettings({ apiBaseUrl: e.target.value })}
                 spellCheck={false}
+                placeholder="/api/v1"
               />
             </label>
             <label className="field">
-              <span>API key</span>
+              <span>API key (optional for /api/v1)</span>
               <input
                 type="password"
                 value={settings.apiKey}

@@ -16,7 +16,7 @@ export function Landing() {
             <GhostMark size={42} className="brand-mark" />
             GhostGPT
           </p>
-          <h1 className="hero-title">Uncensored AI chat and API</h1>
+          <h1 className="hero-title">Ghost GPT AI — chat and API</h1>
           <p className="hero-lede">
             Multi-model routing across Nano, Pro, and Ultra — built for developers who need speed,
             code, and an OpenAI-compatible gateway.

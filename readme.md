@@ -16,21 +16,31 @@ npm install
 npm run dev
 ```
 
-Build:
+This starts the Vite UI on `:5173` and the GhostGPT AI gateway on `:8787` (`/api` is proxied).
+
+Build / production:
 
 ```bash
 npm run build
-npm run preview
+npm start
 ```
 
-## Chat / API settings
+## GhostGPT AI gateway
 
-In Chat → Settings, set:
+- `GET /api/health`
+- `GET /api/v1/models`
+- `POST /api/v1/chat/completions`
 
-- Base URL: `https://api.ghostgpt.live/v1`
-- API key: `ghost_…`
+Model IDs: `ghost-nano`, `ghost-pro`, `ghost-ultra`.
 
-Keys stay in `localStorage` on the client. If the gateway is unreachable or no key is set, the UI falls back to a local demo stream so you can still exercise the product flows.
+Optional server secrets:
+
+- `FIREWORKS_API_KEY` or `UPSTREAM_API_KEY` — enables full upstream inference
+- `UPSTREAM_BASE_URL` — defaults to Fireworks OpenAI-compatible API
+
+Without those secrets, the gateway still streams answers from the onboard GhostGPT AI brain.
+
+Chat defaults to `/api/v1`. Optional browser `ghost_` keys stay in `localStorage`.
 
 ## Stack
 

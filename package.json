@@ -4,15 +4,22 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently -k -n web,ai -c cyan,magenta \"vite\" \"tsx server/index.ts\"",
+    "dev:web": "vite",
+    "dev:ai": "tsx server/index.ts",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "concurrently -k -n web,ai -c cyan,magenta \"vite preview\" \"tsx server/index.ts\"",
+    "start": "NODE_ENV=production tsx server/index.ts"
   },
   "dependencies": {
+    "@hono/node-server": "^2.1.8",
+    "concurrently": "^10.0.7",
+    "hono": "^4.13.19",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "react-router-dom": "^7.18.5"
+    "react-router-dom": "^7.18.5",
+    "tsx": "^4.23.15"
   },
   "devDependencies": {
     "@types/node": "^24.19.2",

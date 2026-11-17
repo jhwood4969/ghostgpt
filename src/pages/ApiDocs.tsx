@@ -44,11 +44,14 @@ export function ApiDocs() {
         <section>
           <h2>Base URL</h2>
           <p>
-            <code>https://api.ghostgpt.live/v1</code>
+            Onboard gateway: <code>/api/v1</code>
           </p>
           <p>
-            Authenticate with a Bearer token that starts with <code>ghost_</code>. Keys are issued
-            through your GhostGPT dashboard or Telegram onboarding bot.
+            Public gateway: <code>https://api.ghostgpt.live/v1</code>
+          </p>
+          <p>
+            The web app talks to the onboard GhostGPT AI by default. External clients can use the
+            public host with a Bearer token that starts with <code>ghost_</code>.
           </p>
         </section>
 

@@ -3,7 +3,7 @@ import type { FormEvent } from "react";
 import { completeChat, streamChat } from "../lib/api";
 import type { ChatMessage } from "../lib/api";
 import { isLikelyNetworkFailure, streamDemoReply } from "../lib/demo";
-import { loadSettings } from "../lib/storage";
+import { loadSettings, requiresBrowserKey } from "../lib/storage";
 
 const SYSTEM: ChatMessage = {
   role: "system",
@@ -35,7 +35,8 @@ export function Code() {
     const write = (chunk: string) => setOutput((prev) => prev + chunk);
 
     try {
-      if (!settings.apiKey.trim()) {
+      const needKey = requiresBrowserKey(settings.apiBaseUrl);
+      if (needKey && !settings.apiKey.trim()) {
         setDemo(true);
         await streamDemoReply(messages, write);
       } else {

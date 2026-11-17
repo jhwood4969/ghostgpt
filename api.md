@@ -4,15 +4,26 @@ OpenAI-compatible gateway for GhostGPT.
 
 ## Base URL
 
+Onboard (this app):
+
+```
+/api/v1
+```
+
+Public gateway:
+
 ```
 https://api.ghostgpt.live/v1
 ```
 
-Authenticate with:
+Optional auth for external clients:
 
 ```
 Authorization: Bearer ghost_YOUR_KEY
 ```
+
+Upstream inference uses `FIREWORKS_API_KEY` or `UPSTREAM_API_KEY` on the server. Without those
+secrets, GhostGPT AI still answers via the onboard local brain.
 
 ## Endpoints
 
