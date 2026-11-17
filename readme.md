@@ -1,6 +1,6 @@
-# GhostGPT
+# GhostGPT AI
 
-High-performance AI chat for [ghostgpt.live](https://ghostgpt.live/), backed by Fireworks **`accounts/fireworks/models/gpt-oss-120b`**.
+The GhostGPT AI chat for [ghostgpt.live](https://ghostgpt.live/), backed by Fireworks **`accounts/fireworks/models/gpt-oss-120b`**.
 
 ## Run locally
 

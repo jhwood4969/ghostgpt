@@ -124,18 +124,18 @@ export default function Chat() {
       <div className="messages" aria-live="polite">
         {messages.length === 0 ? (
           <div className="empty">
-            <h2>GhostGPT</h2>
+            <h2>GhostGPT AI</h2>
             <p>
-              Fast chat on Fireworks{" "}
-              <strong>gpt-oss-120b</strong>. Ask anything — code, research, or
-              product work.
+              Your assistant on Fireworks{" "}
+              <strong>gpt-oss-120b</strong>. Ask for code, research, writing, or
+              anything you need done.
             </p>
           </div>
         ) : (
           messages.map((m) => (
             <div key={m.id} className={`msg ${m.role}`}>
               <div className="who">
-                {m.role === "user" ? "You" : "GhostGPT"}
+                {m.role === "user" ? "You" : "GhostGPT AI"}
               </div>
               <div className="bubble">
                 {m.content || (busy ? "" : "…")}
@@ -158,7 +158,7 @@ export default function Chat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={onKeyDown}
-          placeholder="Message GhostGPT…"
+          placeholder="Message GhostGPT AI…"
           disabled={busy}
           rows={3}
         />

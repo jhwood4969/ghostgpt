@@ -4,6 +4,7 @@ import {
   createSampleStream,
   getFireworksApiKey,
   sanitizeMessages,
+  withGhostSystem,
   type ChatMessage,
 } from "../../../lib/fireworks";
 import { rateLimit } from "../../../lib/rate-limit";
@@ -65,7 +66,7 @@ export async function POST(request: Request) {
   }
 
   const upstream = await createFireworksCompletion(
-    { messages, stream: true, max_tokens: 2048 },
+    { messages: withGhostSystem(messages), stream: true, max_tokens: 2048 },
     apiKey,
   );
 

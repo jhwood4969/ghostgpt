@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "GhostGPT",
+  title: "GhostGPT AI",
   description:
-    "GhostGPT — multi-model AI chat powered by Fireworks gpt-oss-120b.",
+    "GhostGPT AI — chat for ghostgpt.live, powered by Fireworks gpt-oss-120b.",
   icons: { icon: "/ghost.svg" },
 };
 

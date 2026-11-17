@@ -9,6 +9,21 @@ export type ChatMessage = {
   name?: string;
 };
 
+/** Default persona for GhostGPT AI (web chat). */
+export const GHOSTGPT_SYSTEM = [
+  "You are GhostGPT AI, the assistant for ghostgpt.live.",
+  "You are fast, direct, and practical — strong at coding, research, writing, and problem-solving.",
+  "Keep answers clear. Prefer concrete steps and working examples over fluff.",
+  "If a request is ambiguous, make a reasonable assumption and state it briefly.",
+  "Do not claim access to private systems you do not have. Be honest about limits.",
+].join(" ");
+
+export function withGhostSystem(messages: ChatMessage[]): ChatMessage[] {
+  const hasSystem = messages.some((m) => m.role === "system");
+  if (hasSystem) return messages;
+  return [{ role: "system", content: GHOSTGPT_SYSTEM }, ...messages];
+}
+
 export type ChatCompletionBody = {
   model?: string;
   messages: ChatMessage[];
@@ -87,10 +102,9 @@ export async function createFireworksCompletion(
 export function createSampleStream(prompt: string): ReadableStream<Uint8Array> {
   const encoder = new TextEncoder();
   const reply =
-    `GhostGPT sample mode (no Fireworks key on this host yet).\n\n` +
-    `You asked: “${prompt.slice(0, 280)}${prompt.length > 280 ? "…" : ""}”\n\n` +
-    `Live inference uses Fireworks model ${FIREWORKS_MODEL}. ` +
-    `Add FIREWORKS_API_KEY in Cursor Secrets, then republish — this UI will switch to real gpt-oss-120b responses.`;
+    `I’m GhostGPT AI — sample mode is on because FIREWORKS_API_KEY isn’t set on this host yet.\n\n` +
+    `You said: “${prompt.slice(0, 280)}${prompt.length > 280 ? "…" : ""}”\n\n` +
+    `Once the Fireworks key is added, I’ll answer live on ${FIREWORKS_MODEL}.`;
 
   return new ReadableStream({
     start(controller) {

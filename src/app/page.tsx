@@ -8,11 +8,11 @@ export default function HomePage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/ghost.svg" alt="" width={52} height={52} />
           <div>
-            <h1>GhostGPT</h1>
+            <h1>GhostGPT AI</h1>
             <p>ghostgpt.live · Fireworks gpt-oss-120b</p>
           </div>
         </div>
-        <div className="pill">Nano · Pro · Ultra ready</div>
+        <div className="pill">The GhostGPT AI</div>
       </header>
       <Chat />
     </main>

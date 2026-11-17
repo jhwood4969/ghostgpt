@@ -1,6 +1,6 @@
-# GhostGPT API
+# GhostGPT AI API
 
-OpenAI-compatible chat completions powered by Fireworks.
+OpenAI-compatible chat completions for GhostGPT AI, powered by Fireworks.
 
 ## Model
 
